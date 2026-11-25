@@ -1,0 +1,53 @@
+import type { Scenario } from "./types";
+
+/** 默认演示 seed，见 05 §6 */
+export const DEFAULT_SEED = 20261114;
+
+/**
+ * 默认合成场景：一场馆 S、三出口 E1/E2/E3、两接驳点 P1/P2、三类旅客组。
+ * 取自 05 §3 建议输入样例（合成数据，非实测标定）。
+ */
+export const DEFAULT_SCENARIO: Scenario = {
+  schema_version: "1.0",
+  scenario_id: "concert_demo",
+  revision: 1,
+  title: "散场接驳合成场景",
+  demand_source: "synthetic",
+  horizon_s: 1800,
+  step_s: 5,
+  nodes: [
+    { node_id: "S", kind: "source", x: 50, y: 15 },
+    { node_id: "E1", kind: "exit", x: 20, y: 45 },
+    { node_id: "E2", kind: "exit", x: 50, y: 45 },
+    { node_id: "E3", kind: "exit", x: 80, y: 45 },
+    { node_id: "P1", kind: "stop", x: 25, y: 85, boarding_gap_s: 30 },
+    { node_id: "P2", kind: "stop", x: 75, y: 85, boarding_gap_s: 30 },
+  ],
+  edges: [
+    { edge_id: "a1", from: "S", to: "E1", travel_s: 60, capacity_per_min: 60, step_free: true, closed: false },
+    { edge_id: "a2", from: "E1", to: "P1", travel_s: 60, capacity_per_min: 40, step_free: true, closed: false },
+    { edge_id: "b1", from: "S", to: "E2", travel_s: 90, capacity_per_min: 45, step_free: true, closed: false },
+    { edge_id: "b2", from: "E2", to: "P2", travel_s: 60, capacity_per_min: 45, step_free: true, closed: false },
+    { edge_id: "c1", from: "S", to: "E3", travel_s: 45, capacity_per_min: 35, step_free: false, closed: false },
+    { edge_id: "c2", from: "E3", to: "P2", travel_s: 45, capacity_per_min: 35, step_free: false, closed: false },
+  ],
+  routes: [
+    { route_id: "R1", edge_ids: ["a1", "a2"], stop_id: "P1" },
+    { route_id: "R2", edge_ids: ["b1", "b2"], stop_id: "P2" },
+    { route_id: "R3", edge_ids: ["c1", "c2"], stop_id: "P2" },
+  ],
+  groups: [
+    { group_id: "regular", count: 180, release_start_s: 0, release_end_s: 300, needs_step_free: false, walk_time_factor: 1, board_deadline_s: null },
+    { group_id: "step_free", count: 40, release_start_s: 0, release_end_s: 300, needs_step_free: true, walk_time_factor: 1.5, board_deadline_s: null },
+    { group_id: "deadline", count: 80, release_start_s: 0, release_end_s: 300, needs_step_free: false, walk_time_factor: 1, board_deadline_s: 900 },
+  ],
+  fleet: [
+    { vehicle_id: "B1", capacity: 30, available_from_s: 180, round_trip_s: 360 },
+    { vehicle_id: "B2", capacity: 30, available_from_s: 180, round_trip_s: 360 },
+    { vehicle_id: "B3", capacity: 30, available_from_s: 180, round_trip_s: 360 },
+  ],
+};
+
+export function cloneDefaultScenario(): Scenario {
+  return structuredClone(DEFAULT_SCENARIO);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "san-chang-zhi-hou",
+  "version": "1.0.0",
+  "private": true,
+  "description": "散场之后：轻量交通推演与多角色协同决策原型（B 决策与接口）",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server/app.js",
+    "dev": "npm run build && node dist/server/app.js",
+    "test": "npm run build && node --test \"dist/tests/*.test.js\" \"dist/server/simulation/*.test.js\" \"dist/server/travel/*.test.js\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

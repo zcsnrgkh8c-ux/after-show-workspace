@@ -1,0 +1,1127 @@
+/* 「我的出行」模块样式（窗口2本轮整理）：复用窗口4全局变量并带 fallback；390px 无横向溢出 */
+
+.travel-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* ---------------- 页头与边界 ---------------- */
+
+.travel-page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 16px;
+  flex-wrap: wrap;
+}
+
+.travel-page-heading {
+  min-width: 0;
+}
+
+.travel-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.travel-subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+}
+
+.travel-back-btn {
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 13px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  cursor: pointer;
+}
+
+.travel-back-btn:hover {
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+}
+
+.travel-boundary {
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary, #526079);
+  background: rgba(49, 92, 231, 0.06);
+  border: 1px solid rgba(49, 92, 231, 0.16);
+  border-radius: 10px;
+}
+
+.travel-confirmed {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+  word-break: break-all;
+}
+
+.travel-notice {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  border-radius: 10px;
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+  border: 1px solid #fde68a;
+}
+
+/* ---------------- 布局：桌面左表单+结果、右地图；窄屏 表单→结果→地图 ---------------- */
+
+.travel-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "form"
+    "result"
+    "map";
+  gap: 12px;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .travel-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "form map"
+      "result map";
+    align-items: start;
+  }
+
+  .travel-map-col {
+    position: sticky;
+    top: 12px;
+  }
+}
+
+.travel-form-col {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.travel-result-col {
+  grid-area: result;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  scroll-margin-top: 12px;
+}
+
+.travel-map-col {
+  grid-area: map;
+  min-width: 0;
+}
+
+.travel-card {
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: var(--radius-card, 16px);
+  box-shadow: var(--shadow-card, 0 1px 3px rgba(24, 34, 56, 0.06));
+  padding: 14px;
+  min-width: 0;
+}
+
+/* ---------------- 入口地点表单 ---------------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 2px;
+  transition: background 0.2s;
+}
+
+.field--denied {
+  background: #fffbeb;
+  outline: 1px dashed #f59e0b;
+}
+
+.field-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.field-head label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field-row {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 8px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+}
+
+.field-row input:focus {
+  outline: 2px solid var(--accent, #315ce7);
+  outline-offset: -1px;
+}
+
+.ghost-btn {
+  flex: none;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #526079);
+  cursor: pointer;
+}
+
+.ghost-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.field-tools {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tool-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid var(--accent, #315ce7);
+  border-radius: 999px;
+  background: var(--accent-soft, #e8eefc);
+  color: var(--accent, #315ce7);
+  cursor: pointer;
+}
+
+.tool-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.field-denied-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--warn, #92400e);
+}
+
+/* 已确认地点来源 / 精度 */
+.place-source {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.place-source--warn {
+  color: var(--warn, #92400e);
+  font-weight: 600;
+}
+
+.place-warn {
+  margin: 0;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+}
+
+.locate-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: var(--text-secondary, #526079);
+  white-space: nowrap;
+}
+
+.locate-badge--busy {
+  background: #dbeafe;
+  color: var(--accent, #315ce7);
+}
+
+.locate-badge--ok {
+  background: var(--ok-bg, #e3f5e9);
+  color: var(--ok, #166534);
+}
+
+.locate-badge--warn {
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+}
+
+.searching-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.suggestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.suggestions li + li {
+  border-top: 1px solid var(--border, #dde3ee);
+}
+
+.suggestion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: var(--surface, #fff);
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.suggestion:hover:not(:disabled) {
+  background: var(--accent-soft, #e8eefc);
+}
+
+.suggestion--no-coord {
+  cursor: default;
+  color: var(--text-secondary, #526079);
+}
+
+.suggestion-label {
+  font-weight: 600;
+}
+
+.suggestion-meta {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+  word-break: break-all;
+}
+
+.suggestion-nocoord {
+  font-size: 11px;
+  color: var(--warn, #92400e);
+}
+
+.swap-btn {
+  align-self: center;
+  min-height: 36px;
+  padding: 5px 14px;
+  font-size: 12px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--text-secondary, #526079);
+  cursor: pointer;
+}
+
+/* ---------------- 偏好 ---------------- */
+
+.pref {
+  margin: 4px 0 0;
+  padding: 8px 10px 10px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pref legend {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+  padding: 0 4px;
+}
+
+.pref-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  min-height: 32px;
+  padding: 4px 12px;
+  font-size: 12px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  cursor: pointer;
+}
+
+.chip--active {
+  background: var(--accent, #315ce7);
+  border-color: var(--accent, #315ce7);
+  color: #fff;
+}
+
+.pref-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  min-height: 32px;
+}
+
+.pref-note {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 13px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 8px;
+  color: var(--text-primary, #182238);
+}
+
+/* 旧接口保留：外部未使用步骤流时仍可用表单内规划按钮 */
+.plan-btn {
+  margin-top: 4px;
+  min-height: 44px;
+  padding: 11px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent, #315ce7);
+  color: #fff;
+  cursor: pointer;
+}
+
+.plan-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.plan-reason {
+  margin: -2px 0 0;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+/* ---------------- 步骤与主操作 ---------------- */
+
+.travel-steps-card {
+  padding: 12px 14px;
+}
+
+.travel-steps {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.travel-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #dde3ee);
+  background: #fbfcff;
+}
+
+.travel-step--done {
+  border-color: rgba(49, 92, 231, 0.25);
+  background: rgba(49, 92, 231, 0.06);
+}
+
+.travel-step--current {
+  border-color: var(--accent, #315ce7);
+  background: var(--accent-soft, #e8eefc);
+}
+
+.travel-step-index {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border-strong, #c6cede);
+  color: var(--text-secondary, #526079);
+}
+
+.travel-step--done .travel-step-index {
+  background: var(--accent, #315ce7);
+  border-color: var(--accent, #315ce7);
+  color: #fff;
+}
+
+.travel-step--current .travel-step-index {
+  background: var(--accent, #315ce7);
+  border-color: var(--accent, #315ce7);
+  color: #fff;
+}
+
+.travel-step-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.travel-step-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary, #182238);
+}
+
+.travel-step-hint {
+  font-size: 11px;
+  color: var(--text-secondary, #526079);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.travel-primary-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.travel-primary-btn {
+  flex: 1 1 220px;
+  min-height: 44px;
+  padding: 11px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent, #315ce7);
+  color: #fff;
+  cursor: pointer;
+}
+
+.travel-primary-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.travel-secondary-btn {
+  flex: none;
+  min-height: 44px;
+  padding: 9px 14px;
+  font-size: 13px;
+  border: 1px solid var(--border-strong, #c6cede);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  cursor: pointer;
+}
+
+.travel-secondary-btn:hover {
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+}
+
+.travel-action-hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+/* ---------------- 路线事实卡 ---------------- */
+
+.route-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.route-kicker {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary, #182238);
+}
+
+.route-source-chip,
+.advice-source-chip {
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border, #dde3ee);
+  color: var(--text-secondary, #526079);
+  background: #fbfcff;
+  white-space: nowrap;
+}
+
+.route-count {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.route-badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: var(--text-secondary, #526079);
+}
+
+.route-badge--busy {
+  background: #dbeafe;
+  color: var(--accent, #315ce7);
+}
+
+.route-badge--ok {
+  background: var(--ok-bg, #e3f5e9);
+  color: var(--ok, #166534);
+}
+
+.route-badge--warn {
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+}
+
+.route-badge--error {
+  background: var(--danger-bg, #fde8e7);
+  color: var(--danger, #b3261e);
+}
+
+.route-single-note {
+  margin: 0 0 8px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(49, 92, 231, 0.06);
+  color: var(--text-primary, #182238);
+}
+
+.route-wait-note {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.route-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.route-tab {
+  min-height: 36px;
+  padding: 5px 12px;
+  font-size: 12px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  cursor: pointer;
+}
+
+.route-tab--active {
+  background: var(--accent-soft, #e8eefc);
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+  font-weight: 600;
+}
+
+.route-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.route-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.route-metric-label {
+  font-size: 11px;
+  color: var(--text-secondary, #526079);
+}
+
+.route-metric-value {
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.route-metric-value--small {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.route-data-note {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.route-warn-note {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--warn, #92400e);
+}
+
+.route-steps {
+  font-size: 13px;
+}
+
+.route-steps summary {
+  cursor: pointer;
+  color: var(--accent, #315ce7);
+  font-size: 13px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.route-steps ol {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.step-instruction {
+  display: block;
+}
+
+.step-meta {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.route-hint {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.route-footer {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--text-secondary, #526079);
+  border-top: 1px dashed var(--border, #dde3ee);
+  padding-top: 8px;
+}
+
+.route-error-code {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.route-error-msg {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+  word-break: break-all;
+}
+
+/* ---------------- 建议卡 ---------------- */
+
+.advice-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.advice-kicker {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary, #182238);
+}
+
+.advice-mode-chip {
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border, #dde3ee);
+  color: var(--text-secondary, #526079);
+  background: #fbfcff;
+  white-space: nowrap;
+}
+
+.advice-mode-chip--model {
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+  background: var(--accent-soft, #e8eefc);
+  font-weight: 600;
+}
+
+.advice-mode-chip--unavailable {
+  border-color: var(--warn, #92400e);
+  color: var(--warn, #92400e);
+  background: var(--warn-bg, #fdf1d7);
+}
+
+.advice-loading {
+  margin: 0;
+  font-size: 13px;
+  color: var(--accent, #315ce7);
+}
+
+.advice-warning {
+  margin: 0 0 6px;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+}
+
+.advice-warning--prominent {
+  font-weight: 700;
+  border: 1px solid #f59e0b;
+}
+
+.advice-error {
+  margin: 0 0 6px;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--danger-bg, #fde8e7);
+  color: var(--danger, #b3261e);
+}
+
+.advice-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.advice-degraded {
+  font-size: 11px;
+  font-weight: 400;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+}
+
+.advice-single-note {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.advice-pick {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.advice-reasons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.chip--reason {
+  cursor: default;
+  background: #f9fafb;
+}
+
+.advice-explanation {
+  margin: 0 0 8px;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+.advice-evidence {
+  margin: 0 0 8px;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.advice-warning-list {
+  margin: 0 0 8px;
+  padding: 8px 10px 8px 26px;
+  font-size: 12px;
+  border-radius: 8px;
+  background: var(--warn-bg, #fdf1d7);
+  color: var(--warn, #92400e);
+}
+
+.advice-source-line {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-secondary, #526079);
+  border-top: 1px dashed var(--border, #dde3ee);
+  padding-top: 8px;
+}
+
+.advice-mode-details {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+
+.advice-mode-details summary {
+  cursor: pointer;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.advice-mode-details p {
+  margin: 4px 0 0;
+}
+
+/* ---------------- 地图 ---------------- */
+
+.travel-map {
+  position: relative;
+  min-width: 0;
+}
+
+/* 高德 SDK 会向容器追加全局类 amap-container（全局 440px 高度）：
+   用更高优先级的局部选择器确保本页地图高度与圆角不被全局样式覆盖。 */
+.travel-map .travel-map-canvas {
+  width: 100%;
+  height: 340px;
+  border-radius: var(--radius-card, 16px);
+  border: 1px solid var(--border, #dde3ee);
+  background: #eef2f7;
+  overflow: hidden;
+}
+
+.travel-map-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+  border-radius: var(--radius-card, 16px);
+  border: 1px dashed var(--border, #dde3ee);
+  background: #f9fafb;
+}
+
+.travel-map-placeholder--warn {
+  color: var(--warn, #92400e);
+  background: var(--warn-bg, #fdf1d7);
+  border: 1px solid #fde68a;
+}
+
+.travel-map-caption {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--text-secondary, #526079);
+}
+
+.travel-map-caption--dim {
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+/* ---------------- 数据来源 ---------------- */
+
+.travel-sources {
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: var(--radius-card, 16px);
+  background: var(--surface, #fff);
+  padding: 10px 14px;
+}
+
+.travel-sources summary {
+  cursor: pointer;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--text-primary, #182238);
+}
+
+.travel-sources ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---------------- 窄屏 ---------------- */
+
+@media (max-width: 767px) {
+  .travel-map .travel-map-canvas {
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .travel-card {
+    padding: 12px;
+  }
+
+  /* 手机触控区：出行方式、地点工具、交换、偏好 chip 统一到 44px */
+  .travel-mode-btn,
+  .tool-btn,
+  .ghost-btn,
+  .swap-btn,
+  .chip {
+    min-height: 44px;
+  }
+
+  .travel-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .travel-primary-btn {
+    flex: 1 1 100%;
+  }
+
+  .travel-map .travel-map-canvas {
+    height: 240px;
+  }
+
+  .route-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------------- 出行方式切换（步行 / 公交） ---------------- */
+
+.travel-mode-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+}
+
+.travel-mode-btn {
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary, #526079);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.travel-mode-btn--active {
+  background: var(--accent-soft, #e8eefc);
+  color: var(--accent, #315ce7);
+  font-weight: 600;
+}
+
+/* ---------------- 公交行程分段 ---------------- */
+
+.transit-legs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.transit-legs li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.transit-leg-tag {
+  display: inline-block;
+  min-width: 40px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  background: #eef2f7;
+  color: #334155;
+}
+
+.transit-leg-tag--walking {
+  background: #e8eefc;
+  color: #315ce7;
+}
+
+.transit-leg-tag--subway {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.transit-leg-tag--bus {
+  background: #e3f5e9;
+  color: #166534;
+}
+
+.transit-leg-tag--railway {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.transit-leg-detail {
+  color: var(--text-primary, #182238);
+}
+
+.travel-transit-note {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border, #dde3ee);
+  border-radius: var(--radius-card, 12px);
+  background: var(--surface, #fff);
+  color: var(--text-secondary, #526079);
+  font-size: 12px;
+  line-height: 1.6;
+}

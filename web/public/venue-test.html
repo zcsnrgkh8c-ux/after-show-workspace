@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>场馆出入口采集器 · 散场之后</title>
+<style>
+  :root {
+    --bg: #f8fafc; --panel: #fff; --line: #e2e8f0; --text: #0f172a;
+    --dim: #64748b; --accent: #2563eb; --ok: #059669; --warn: #b45309; --danger: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); }
+  header { display: flex; gap: 10px; align-items: center; padding: 10px 14px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  h1 { font-size: 15px; margin: 0 8px 0 0; white-space: nowrap; }
+  input, select { border: 1px solid var(--line); border-radius: 7px; padding: 7px 9px; font: inherit; font-size: 13px; }
+  button { border: 1px solid var(--line); background: #fff; border-radius: 7px; padding: 7px 11px; font: inherit; font-size: 13px; cursor: pointer; }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.primary:hover { opacity: .92; color: #fff; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  main { display: flex; height: calc(100vh - 58px); }
+  #map { flex: 1 1 62%; min-width: 320px; }
+  aside { flex: 0 0 38%; max-width: 520px; min-width: 300px; border-left: 1px solid var(--line); background: var(--panel); overflow-y: auto; padding: 12px; }
+  .hint { font-size: 12px; color: var(--dim); line-height: 1.65; }
+  .block { margin-bottom: 14px; }
+  .block > h2 { font-size: 13px; margin: 0 0 8px; display: flex; align-items: center; gap: 6px; }
+  .badge { font-size: 11px; padding: 1px 7px; border-radius: 999px; background: #eff6ff; color: var(--accent); }
+  .item { border: 1px solid var(--line); border-radius: 8px; padding: 8px 9px; margin-bottom: 7px; font-size: 12px; }
+  .item .name { font-weight: 600; margin-bottom: 3px; word-break: break-all; }
+  .item .meta { color: var(--dim); font-size: 11px; margin-bottom: 6px; word-break: break-all; }
+  .row { display: flex; gap: 5px; flex-wrap: wrap; }
+  .row button { padding: 3px 7px; font-size: 11px; }
+  .ok { color: var(--ok); } .warn { color: var(--warn); } .danger { color: var(--danger); }
+  .slot { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
+  .slot b { width: 26px; flex: none; }
+  .slot .v { flex: 1; color: var(--dim); font-family: ui-monospace, Consolas, monospace; font-size: 11px; word-break: break-all; }
+  textarea { width: 100%; height: 118px; border: 1px solid var(--line); border-radius: 8px; padding: 8px; font: 11px/1.5 ui-monospace, Consolas, monospace; resize: vertical; margin-top: 8px; }
+  .status { font-size: 12px; padding: 8px 10px; border-radius: 8px; background: #f1f5f9; color: var(--dim); margin-bottom: 10px; line-height: 1.6; }
+  .status.err { background: #fef2f2; color: var(--danger); }
+  .status.ok { background: #ecfdf5; color: var(--ok); }
+  .status.warn { background: #fffbeb; color: var(--warn); }
+</style>
+</head>
+<body>
+<header>
+  <h1>场馆出入口采集器</h1>
+  <input id="venue" value="华东交通大学" style="width: 190px" placeholder="场馆/学校名称" />
+  <button id="btnSearch" class="primary">搜索出入口</button>
+  <button id="btnLocate">定位到我</button>
+  <button id="btnNearby" disabled title="先定位，再以我的位置为圆心搜索附近场馆的出口">搜索我附近的出口</button>
+  <span style="width:1px;height:20px;background:var(--line)"></span>
+  <input id="jump" placeholder="输入地点跳转，如 华东交通大学北门" style="width: 230px" />
+  <button id="btnJump">跳转</button>
+  <span class="hint" id="netHint"></span>
+</header>
+<main>
+  <div id="map"></div>
+  <aside>
+    <div class="status" id="status">正在加载高德地图…</div>
+
+    <div class="block">
+      <h2>搜索结果 <span class="badge" id="count">0</span></h2>
+      <div class="hint" id="searchHint">点击“搜索出入口”后，这里会列出高德在该场馆周边能搜到的全部门/出入口 POI，并标注是否属于该场馆。</div>
+      <div id="results"></div>
+    </div>
+
+    <div class="block">
+      <h2>节点坐标</h2>
+      <div class="hint" style="margin-bottom:8px">
+        点击地图可拾取坐标：先选择要赋值的节点，再点地图。
+        <select id="pickTarget" style="margin-left:4px">
+          <option value="ME">ME 我的位置（点地图拾取）</option>
+          <option value="S">S 场馆</option>
+          <option value="E1">E1 出口1</option>
+          <option value="E2">E2 出口2</option>
+          <option value="E3">E3 出口3</option>
+          <option value="P1">P1 接驳点1</option>
+          <option value="P2">P2 接驳点2</option>
+        </select>
+      </div>
+      <div id="slots"></div>
+      <div class="row" style="margin-top:8px">
+        <button id="btnClearSlots">清空全部</button>
+        <button id="btnGen" class="primary">生成配置</button>
+      </div>
+      <textarea id="json" readonly placeholder="生成后可复制到 .env.local 的 VITE_MAP_GEO_JSON"></textarea>
+      <div class="row" style="margin-top:6px">
+        <button id="btnCopy">复制 JSON</button>
+        <button id="btnFit">适配全部节点</button>
+      </div>
+    </div>
+
+    <div class="block hint">
+      <b>说明</b><br />
+      · 高德 POI 对部分学校/场馆没有收录校门，此时结果里只会出现停车场出入口或附近小区的门，<b>不要把它们当作真实校门</b>；<br />
+      · 本页面只采集展示用坐标，不参与任何推演计算；<br />
+      · 生成的 JSON 中 <code>coordVerified</code> 默认 false，确认位置无误后自行改为 true。
+    </div>
+  </aside>
+</main>
+
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  // 凭据只从 URL 参数读取，不在页面中内置：venue-test.html?key=你的KEY&code=你的安全密钥
+  const KEY = params.get("key") || "";
+  const SEC = params.get("code") || "";
+  window._AMapSecurityConfig = { securityJsCode: SEC };
+
+  const $ = (id) => document.getElementById(id);
+  const statusEl = $("status");
+  const resultsEl = $("results");
+  const slotsEl = $("slots");
+  const jsonEl = $("json");
+
+  const SLOT_IDS = ["S", "E1", "E2", "E3", "P1", "P2"];
+  const slots = { S: null, E1: null, E2: null, E3: null, P1: null, P2: null };
+  const slotMarkers = {};
+  const found = [];
+  let map = null;
+  let AMap = null;
+  let venueCenter = [115.8666, 28.7168];
+  let tempMarkers = [];
+  let myLocation = null;
+
+  function setStatus(text, kind) {
+    statusEl.textContent = text;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+  }
+
+  function loadSdk() {
+    if (!KEY) {
+      setStatus("请通过 URL 参数传入凭据：venue-test.html?key=你的高德JS_API_Key&code=安全密钥", "err");
+      return;
+    }
+    if (location.protocol === "file:") {
+      setStatus("请通过 http://localhost:5173/venue-test.html 访问：file:// 下浏览器会拒绝定位与 SDK 请求。", "err");
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = "https://webapi.amap.com/maps?v=2.0&key=" + encodeURIComponent(KEY);
+    s.onload = init;
+    s.onerror = () => setStatus("高德 SDK 加载失败：请检查 key 或网络。", "err");
+    document.head.appendChild(s);
+  }
+
+  function init() {
+    AMap = window.AMap;
+    if (!AMap) { setStatus("高德 SDK 未就绪。", "err"); return; }
+    map = new AMap.Map("map", { viewMode: "2D", zoom: 15, center: venueCenter });
+    map.on("click", (e) => assignFromMap(e.lnglat));
+    setStatus("地图已就绪：可搜索出入口、定位，或直接点地图拾取坐标。", "ok");
+  }
+
+  function pluginReady() {
+    return new Promise((resolve, reject) => {
+      if (typeof AMap.plugin !== "function") { reject(new Error("SDK 不支持插件加载")); return; }
+      AMap.plugin(["AMap.PlaceSearch", "AMap.Geolocation", "AMap.CitySearch", "AMap.AutoComplete"], () => resolve());
+    });
+  }
+
+  function searchFirst(kw) {
+    return new Promise((resolve) => {
+      new AMap.PlaceSearch({}).search(kw, (status, r) => {
+        const p = r && r.poiList && r.poiList.pois && r.poiList.pois[0];
+        resolve(p && p.location ? { name: p.name, position: [p.location.lng, p.location.lat] } : null);
+      });
+    });
+  }
+
+  function searchNearby(kw, center, radius) {
+    return new Promise((resolve) => {
+      const ps = new AMap.PlaceSearch({ pageSize: 20 });
+      if (typeof ps.searchNearBy !== "function") { resolve([]); return; }
+      try {
+        ps.searchNearBy(kw, center, radius, (status, r) => {
+          const list = (r && r.poiList && r.poiList.pois) || [];
+          resolve(list.map((p) => ({
+            name: p.name,
+            position: [p.location.lng, p.location.lat],
+            distance: Number(p.distance) || null
+          })));
+        });
+      } catch (e) { resolve([]); }
+    });
+  }
+
+  // 输入提示：高校校门只有 AutoComplete 能搜到（PlaceSearch 搜不出）
+  // 并发过多会被高德限流（status=error），失败延迟重试一次
+  function autocompleteTips(kw) {
+    return new Promise(function (resolve) {
+      if (!AMap.AutoComplete) { resolve([]); return; }
+      function run(attempt) {
+        var ac;
+        try { ac = new AMap.AutoComplete({ citylimit: false }); }
+        catch (e) { resolve([]); return; }
+        ac.search(kw, function (status, r) {
+          if (status !== "complete") {
+            if (attempt < 1) { setTimeout(function () { run(attempt + 1); }, 300); return; }
+            resolve([]);
+            return;
+          }
+          var tips = (r && r.tips) || [];
+          resolve(tips.filter(function (t) { return t.name && t.location; }).map(function (t) {
+            return { name: t.name, position: [t.location.lng, t.location.lat], distance: null };
+          }));
+        });
+      }
+      run(0);
+    });
+  }
+
+  // 分批执行：每批 4 个，批间 150ms，避免触发高德并发限流
+  async function mapInBatches(items, fn, size, gap) {
+    var out = [];
+    var step = size || 4;
+    for (var i = 0; i < items.length; i += step) {
+      var batch = items.slice(i, i + step);
+      out = out.concat(await Promise.all(batch.map(fn)));
+      if (i + step < items.length) {
+        await new Promise(function (r) { setTimeout(r, gap || 150); });
+      }
+    }
+    return out;
+  }
+
+  // 只认可“以门/出入口结尾”的名称，避免把“门诊部”当成校门
+  function isGateName(name) {
+    return /(门|入口)\s*[)）]?$/.test(name);
+  }
+
+  function distanceM(a, b) {
+    var R = 6371000;
+    var rad = function (d) { return (d * Math.PI) / 180; };
+    var dLat = rad(b[1] - a[1]);
+    var dLng = rad(b[0] - a[0]);
+    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(rad(a[1])) * Math.cos(rad(b[1])) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+
+  function dedupeByProximity(list, threshold) {
+    var kept = [];
+    list.forEach(function (p) {
+      var dup = kept.some(function (k) { return distanceM(k.position, p.position) < (threshold || 30); });
+      if (!dup) kept.push(p);
+    });
+    return kept;
+  }
+
+  // 以“我的位置”为圆心：先找附近场馆，再查每个场馆的门
+  async function doSearchNearby() {
+    if (!myLocation) { setStatus("请先点击“定位到我”。", "err"); return; }
+    $("btnNearby").disabled = true;
+    setStatus("正在以我的位置为中心搜索附近场馆的出口…");
+    try {
+      await pluginReady();
+      var VENUE_KWS = ["大学", "学院", "体育中心", "体育馆", "会展中心", "剧院", "场馆", "学校", "广场"];
+      var venueBatches = await mapInBatches(VENUE_KWS, function (k) {
+        return searchNearby(k, myLocation, 3000);
+      });
+      var venues = dedupeByProximity(
+        venueBatches.flat().filter(function (v) { return !/停车场|地铁站|公交站|车站/.test(v.name); })
+      ).map(function (v) {
+        return { name: v.name, position: v.position, distance: distanceM(myLocation, v.position) };
+      }).sort(function (a, b) { return a.distance - b.distance; }).slice(0, 4);
+
+      if (venues.length === 0) {
+        setStatus("我的位置周边 3km 内没有找到场馆，可换到场馆附近再试或手动点选。", "err");
+        return;
+      }
+
+      var acKws = venues.flatMap(function (v) {
+        var base = v.name.replace(/[（(][^）)]*[）)]/g, "").replace(/\s+/g, "");
+        return ["门", "西", "东", "南", "北"].map(function (s) { return base + s; });
+      });
+      var gateBatches = await mapInBatches(acKws, function (kw) { return autocompleteTips(kw); });
+
+      var gates = dedupeByProximity(gateBatches.flat())
+        .filter(function (g) { return isGateName(g.name) && !/停车场|地铁站|公交站|办公楼|门诊/.test(g.name); })
+        .map(function (g) {
+          return { name: g.name, position: g.position, distance: distanceM(myLocation, g.position) };
+        })
+        .sort(function (a, b) { return a.distance - b.distance; });
+
+      found.length = 0;
+      gates.forEach(function (g) {
+        found.push({ name: g.name, position: g.position, distance: g.distance, belongs: true, fromAC: true, nearMe: true });
+      });
+      renderResults();
+
+      if (gates.length > 0) {
+        map.setZoomAndCenter(15, myLocation);
+        flashMarker(myLocation, "我的位置");
+        setStatus("以我的位置为圆心，找到 " + venues.length + " 个场馆、" + gates.length + " 个出口（按距我距离排序）。");
+      } else {
+        setStatus("附近找到 " + venues.length + " 个场馆，但没有可识别的出入口，请手动点选。", "err");
+      }
+    } catch (e) {
+      setStatus("搜索失败：" + (e && e.message ? e.message : String(e)), "err");
+    } finally {
+      $("btnNearby").disabled = false;
+    }
+  }
+
+  function coreKeys(venueName) {
+    const core = (venueName || "").replace(/[（(][^）)]*[）)]/g, "").replace(/\s+/g, "");
+    const keys = new Set([core]);
+    ["广州","北京","上海","深圳","南昌","杭州","成都","武汉","西安","南京","重庆","天津","苏州","长沙","郑州","青岛","沈阳","昆明","合肥","福州","济南","南宁","海口","兰州","太原","哈尔滨","长春","大连","宁波","无锡","佛山","东莞","珠海"].forEach((p) => {
+      if (core.startsWith(p) && core.length > p.length + 2) keys.add(core.slice(p.length));
+    });
+    if (core.length > 4) keys.add(core.slice(-4));
+    return Array.from(keys).filter((k) => k.length >= 2);
+  }
+
+  async function doSearch() {
+    const kw = $("venue").value.trim();
+    if (!kw) { setStatus("请先填写场馆名称。", "err"); return; }
+    $("btnSearch").disabled = true;
+    setStatus("正在检索场馆与周边出入口…");
+    try {
+      await pluginReady();
+      const venue = await searchFirst(kw);
+      if (!venue) { setStatus("未检索到该场馆，请更换名称后再试。", "err"); return; }
+      venueCenter = venue.position;
+      map.setZoomAndCenter(15, venue.position);
+      flashMarker(venue.position, venue.name);
+
+      const GATE_KWS = ["门", "出入口", "北门", "南门", "东门", "西门", "正门", "校门"];
+      const AC_SUFFIXES = ["门", "西", "东", "南", "北", "校门", "正门"];
+      const acBase = venue.name.replace(/[（(][^）)]*[）)]/g, "").replace(/\s+/g, "");
+      const batches = await mapInBatches(GATE_KWS, (k) => searchNearby(k, venue.position, 2000));
+      const acBatches = await mapInBatches(AC_SUFFIXES, (s) => autocompleteTips(acBase + s));
+
+      const keys = coreKeys(venue.name);
+      const seen = {};
+      found.length = 0;
+      function pushEntry(p, fromAC) {
+        const dedupe = p.name + "@" + p.position.join(",");
+        if (seen[dedupe]) return;
+        seen[dedupe] = true;
+        if (!isGateName(p.name)) return;
+        found.push({
+          name: p.name,
+          position: p.position,
+          distance: p.distance,
+          fromAC: fromAC,
+          belongs: keys.some((k) => p.name.indexOf(k) >= 0)
+        });
+      }
+      batches.forEach(function (batch) { batch.forEach(function (p) { pushEntry(p, false); }); });
+      acBatches.forEach(function (batch) { batch.forEach(function (p) { pushEntry(p, true); }); });
+      found.sort((a, b) => (b.belongs ? 1 : 0) - (a.belongs ? 1 : 0) || ((a.distance || 1e9) - (b.distance || 1e9)));
+
+      renderResults();
+      const own = found.filter((f) => f.belongs).length;
+      if (own > 0) {
+        setStatus("场馆：" + venue.name + "｜共 " + found.length + " 个门/出入口，其中 " + own + " 个名称属于该场馆。", "ok");
+      } else if (found.length > 0) {
+        setStatus("场馆：" + venue.name + "｜共 " + found.length + " 个门/出入口，但没有一个属于该场馆——高德很可能未收录它的校门，请手动点选。", "err");
+      } else {
+        setStatus("场馆：" + venue.name + "｜周边没有搜到任何门/出入口 POI，请手动点选。", "err");
+      }
+    } catch (e) {
+      setStatus("搜索失败：" + (e && e.message ? e.message : String(e)), "err");
+    } finally {
+      $("btnSearch").disabled = false;
+    }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  function renderResults() {
+    resultsEl.innerHTML = "";
+    $("count").textContent = String(found.length);
+    if (found.length === 0) {
+      resultsEl.innerHTML = '<div class="hint">没有搜到任何门/出入口 POI。请手动在地图上点选，或换用更完整的场馆名称。</div>';
+      return;
+    }
+    found.forEach(function (p) {
+      const div = document.createElement("div");
+      div.className = "item";
+      const tag = p.belongs ? '<span class="ok">属于该场馆</span>' : '<span class="warn">非该场馆</span>';
+      div.innerHTML =
+        '<div class="name">' + esc(p.name) + "</div>" +
+        '<div class="meta">' + tag +
+        (p.fromAC ? ' · <span class="ok">输入提示命中</span>' : "") +
+        (p.distance != null ? " · " + (p.nearMe ? "距我 " : "") + Math.round(p.distance) + "m" : "") +
+        " · " + p.position[0].toFixed(6) + ", " + p.position[1].toFixed(6) + "</div>";
+
+      const row = document.createElement("div");
+      row.className = "row";
+      ["E1", "E2", "E3", "P1", "P2", "S"].forEach(function (id) {
+        const b = document.createElement("button");
+        b.textContent = "设为 " + id;
+        b.onclick = function () { assignSlot(id, p.name, p.position); };
+        row.appendChild(b);
+      });
+      const loc = document.createElement("button");
+      loc.textContent = "定位";
+      loc.onclick = function () { map.setZoomAndCenter(17, p.position); };
+      row.appendChild(loc);
+
+      div.appendChild(row);
+      div.onclick = function (e) {
+        if (e.target.tagName !== "BUTTON") map.setZoomAndCenter(17, p.position);
+      };
+      resultsEl.appendChild(div);
+    });
+  }
+
+  function flashMarker(pos, title) {
+    tempMarkers.forEach(function (m) { map.remove(m); });
+    tempMarkers = [];
+    const m = new AMap.Marker({ position: pos, title: title || "" });
+    map.add(m);
+    tempMarkers.push(m);
+  }
+
+  function assignFromMap(lnglat) {
+    const target = $("pickTarget").value;
+    if (target === "ME") {
+      myLocation = [lnglat.lng, lnglat.lat];
+      $("btnNearby").disabled = false;
+      flashMarker(myLocation, "我的位置");
+      setStatus("已把地图点选位置设为“我的位置”，可点“搜索我附近的出口”。", "ok");
+      return;
+    }
+    assignSlot(target, target + "（地图点选）", [lnglat.lng, lnglat.lat]);
+  }
+
+  function assignSlot(id, name, pos) {
+    slots[id] = { name: name, position: pos };
+    if (slotMarkers[id]) map.remove(slotMarkers[id]);
+    const m = new AMap.Marker({ position: pos, label: { content: id, direction: "top" } });
+    map.add(m);
+    slotMarkers[id] = m;
+    renderSlots();
+  }
+
+  function clearSlot(id) {
+    slots[id] = null;
+    if (slotMarkers[id]) { map.remove(slotMarkers[id]); delete slotMarkers[id]; }
+    renderSlots();
+  }
+
+  function renderSlots() {
+    slotsEl.innerHTML = "";
+    SLOT_IDS.forEach(function (id) {
+      const s = slots[id];
+      const row = document.createElement("div");
+      row.className = "slot";
+      const label = document.createElement("b");
+      label.textContent = id;
+      const v = document.createElement("span");
+      v.className = "v";
+      v.textContent = s ? s.name + "｜" + s.position[0].toFixed(6) + ", " + s.position[1].toFixed(6) : "未设置";
+      row.appendChild(label);
+      row.appendChild(v);
+      if (s) {
+        const b = document.createElement("button");
+        b.textContent = "清除";
+        b.onclick = function () { clearSlot(id); };
+        row.appendChild(b);
+      }
+      slotsEl.appendChild(row);
+    });
+  }
+
+  async function doLocate() {
+    $("btnLocate").disabled = true;
+    setStatus("正在定位…（浏览器定位失败会自动改用 IP 定位）");
+    try {
+      await pluginReady();
+      const geo = new AMap.Geolocation({
+        enableHighAccuracy: true, timeout: 6000,
+        showButton: false, showMarker: false, showCircle: false
+      });
+      const pos = await new Promise(function (resolve) {
+        geo.getCurrentPosition(function (status, result) {
+          if (status === "complete" && result.position) resolve([result.position.lng, result.position.lat]);
+          else resolve(null);
+        });
+      });
+      if (pos) {
+        myLocation = pos;
+        $("btnNearby").disabled = false;
+        map.setZoomAndCenter(16, pos);
+        flashMarker(pos, "当前定位");
+        setStatus("已定位到当前位置。可点“搜索我附近的出口”。", "ok");
+        return;
+      }
+      const ipGeo = new AMap.Geolocation({
+        GeoLocationFirst: false, noIpLocate: false, timeout: 8000,
+        showButton: false, showMarker: false, showCircle: false
+      });
+      const ipPos = await new Promise(function (resolve) {
+        ipGeo.getCurrentPosition(function (status, result) {
+          if (status === "complete" && result.position) resolve([result.position.lng, result.position.lat]);
+          else resolve(null);
+        });
+      });
+      if (ipPos) {
+        myLocation = ipPos;
+        $("btnNearby").disabled = false;
+        map.setZoomAndCenter(13, ipPos);
+        flashMarker(ipPos, "IP 定位");
+        setStatus("浏览器精确定位不可用，已降级为 IP 定位（城市级）。仍可点“搜索我附近的出口”。", "ok");
+        return;
+      }
+      setStatus("定位不可用：请检查地址栏的定位权限（允许后刷新），或直接输入地点跳转。", "err");
+    } catch (e) {
+      setStatus("定位失败：" + (e && e.message ? e.message : String(e)), "err");
+    } finally {
+      $("btnLocate").disabled = false;
+    }
+  }
+
+  async function doJump() {
+    const kw = $("jump").value.trim();
+    if (!kw) { setStatus("请输入要跳转的地点。", "err"); return; }
+    $("btnJump").disabled = true;
+    setStatus("正在搜索：" + kw);
+    try {
+      await pluginReady();
+      const hit = await searchFirst(kw);
+      if (!hit) { setStatus("未找到：" + kw, "err"); return; }
+      map.setZoomAndCenter(17, hit.position);
+      flashMarker(hit.position, hit.name);
+      setStatus("已跳转到：" + hit.name, "ok");
+    } catch (e) {
+      setStatus("跳转失败：" + (e && e.message ? e.message : String(e)), "err");
+    } finally {
+      $("btnJump").disabled = false;
+    }
+  }
+
+  function genJson() {
+    const nodes = {};
+    SLOT_IDS.forEach(function (id) {
+      if (slots[id]) nodes[id] = slots[id].position.map(function (v) { return Number(v.toFixed(6)); });
+    });
+    const out = {
+      venueName: $("venue").value.trim() || "未命名场地",
+      coordVerified: false,
+      center: nodes.S || venueCenter,
+      nodes: nodes
+    };
+    jsonEl.value = JSON.stringify(out);
+    const missing = SLOT_IDS.filter(function (id) { return !nodes[id]; });
+    if (missing.length === 0) setStatus("已生成完整配置，可复制到 .env.local 的 VITE_MAP_GEO_JSON。", "ok");
+    else setStatus("已生成，但缺少节点：" + missing.join("、"), "warn");
+  }
+
+  $("btnSearch").onclick = doSearch;
+  $("btnLocate").onclick = doLocate;
+  $("btnNearby").onclick = doSearchNearby;
+  $("btnJump").onclick = doJump;
+  $("btnGen").onclick = genJson;
+  $("btnFit").onclick = function () {
+    const markers = SLOT_IDS.filter(function (id) { return slots[id]; }).map(function (id) {
+      return new AMap.Marker({ position: slots[id].position });
+    });
+    if (markers.length > 0) map.setFitView(markers, false, [60, 60, 60, 60]);
+  };
+  $("btnClearSlots").onclick = function () {
+    SLOT_IDS.forEach(function (id) { clearSlot(id); });
+  };
+  $("btnCopy").onclick = async function () {
+    if (!jsonEl.value) { setStatus("请先生成配置。", "err"); return; }
+    try {
+      await navigator.clipboard.writeText(jsonEl.value);
+      setStatus("已复制到剪贴板。", "ok");
+    } catch (e) {
+      jsonEl.select();
+      document.execCommand("copy");
+      setStatus("已复制（回退方式）。", "ok");
+    }
+  };
+  $("jump").addEventListener("keydown", function (e) { if (e.key === "Enter") doJump(); });
+  $("venue").addEventListener("keydown", function (e) { if (e.key === "Enter") doSearch(); });
+
+  $("netHint").textContent = KEY ? "key：" + KEY.slice(0, 6) + "…" : "key：未提供";
+  renderSlots();
+  loadSdk();
+})();
+</script>
+</body>
+</html>

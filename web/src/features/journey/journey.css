@@ -1,0 +1,652 @@
+/* =========================================================
+   features/journey 局部样式（窗口1）
+   规则：所有类名 journey- 前缀；不写全局元素/公共类覆盖；
+   颜色与圆角优先用窗口4提供的全局变量（--surface / --text-primary /
+   --text-secondary / --accent / --radius-card），未就绪时用约定值兜底。
+   视觉约定：浅底 #F6F8FC、白卡片 16px 圆角、主文字 #182238、
+   辅助文字 #526079、主色 #315CE7；间距 8/12/16/24/32px。
+   ========================================================= */
+
+.journey-page {
+  /* 局部作用域变量（不进全局） */
+  --journey-border: #e2e7f0;
+  --journey-chip-border: #c9d2e3;
+  --journey-soft: #f6f8fc;
+  --journey-ok: #14522a;
+  --journey-ok-strong: #1d7a3d;
+  --journey-ok-bg: #eef7f0;
+  --journey-ok-border: #9fceb0;
+  --journey-warn: #8a5a00;
+  --journey-warn-bg: #fdf6e7;
+  --journey-warn-border: #e3c37c;
+  --journey-danger: #b3261e;
+  --journey-danger-strong: #8c1d16;
+  --journey-danger-bg: #fceeec;
+  --journey-danger-border: #e7b6b2;
+  --journey-replay: #5b3fa8;
+  --journey-replay-bg: #f3effc;
+  --journey-replay-border: #c7b8ea;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- 顶部：当前场景与数据模式（一行事实说明，不做宣传区） ---- */
+.journey-context {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border: 1px solid var(--journey-border);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  font-size: 13px;
+}
+.journey-context-title {
+  color: var(--text-primary, #182238);
+  font-weight: 600;
+}
+.journey-context-note {
+  font-size: 12px;
+}
+
+/* ---- 页首：短标题 + 需求选择 ---- */
+.journey-title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--text-primary, #182238);
+}
+.journey-sub {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--text-secondary, #526079);
+}
+.journey-scope-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+
+.journey-dim {
+  color: var(--text-secondary, #526079);
+}
+
+/* 需求 chips */
+.journey-chips {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.journey-chip-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.journey-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-height: 52px;
+  min-width: 132px;
+  padding: 8px 16px;
+  border: 1px solid var(--journey-chip-border);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.journey-chip:hover {
+  border-color: var(--accent, #315ce7);
+}
+.journey-chip-active {
+  background: var(--accent-soft, #e8eefc);
+  border-color: var(--accent, #315ce7);
+  box-shadow: inset 0 0 0 1px var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+  font-weight: 600;
+}
+.journey-chip-count {
+  font-size: 12px;
+  opacity: 0.85;
+}
+.journey-subgroup-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.journey-subgroup {
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 1px solid var(--journey-chip-border);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.journey-subgroup-active {
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+  font-weight: 600;
+}
+
+/* ---- 主体两列：桌面 地图 3fr + 建议列 2fr ----
+   阅读顺序（DOM 与移动端一致）：需求选择 → 当前安排 → 地图 → 必要指标 → 依据与调整；
+   桌面把地图放左列跨四行，右列自上而下：需求选择 → 当前安排 → 指标 → 依据。 */
+.journey-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-areas:
+    "map needs"
+    "map summary"
+    "map metrics"
+    "map detail";
+  gap: 14px;
+  align-items: start;
+}
+.journey-needs-area {
+  grid-area: needs;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.journey-needs-area .journey-chips {
+  margin-top: 0;
+}
+.journey-map-area {
+  grid-area: map;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+.journey-map-fallback {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  border: 1px dashed var(--journey-chip-border);
+  border-radius: var(--radius-card, 16px);
+  background: var(--surface, #fff);
+  color: var(--text-secondary, #526079);
+  font-size: 14px;
+}
+.journey-summary {
+  grid-area: summary;
+}
+.journey-metrics-card {
+  grid-area: metrics;
+}
+.journey-detail {
+  grid-area: detail;
+}
+
+@media (max-width: 900px) {
+  .journey-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "needs"
+      "summary"
+      "map"
+      "metrics"
+      "detail";
+  }
+  .journey-map-area {
+    min-height: 300px;
+  }
+}
+
+/* ---- 卡片基形 ---- */
+.journey-card {
+  background: var(--surface, #fff);
+  border: 1px solid var(--journey-border);
+  border-radius: var(--radius-card, 16px);
+  box-shadow: 0 1px 2px rgba(24, 34, 56, 0.04);
+  padding: 16px;
+  margin: 0;
+}
+.journey-card-title {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-primary, #182238);
+}
+.journey-summary-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.journey-group-line {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: var(--text-primary, #182238);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 徽标 */
+.journey-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
+  border: 1px solid var(--journey-chip-border);
+  color: var(--text-secondary, #526079);
+  background: transparent;
+}
+.journey-badge-ok {
+  color: var(--journey-ok-strong);
+  border-color: var(--journey-ok-border);
+  background: var(--journey-ok-bg);
+}
+.journey-badge-warn {
+  color: var(--journey-warn);
+  border-color: var(--journey-warn-border);
+  background: var(--journey-warn-bg);
+}
+.journey-badge-danger {
+  color: var(--journey-danger);
+  border-color: var(--journey-danger-border);
+  background: var(--journey-danger-bg);
+}
+.journey-badge-replay {
+  color: var(--journey-replay);
+  border-color: var(--journey-replay-border);
+  background: var(--journey-replay-bg);
+}
+
+/* 方案行 */
+.journey-plan-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 12px;
+}
+.journey-plan-name {
+  font-size: 16px;
+  color: var(--text-primary, #182238);
+}
+.journey-plan-status {
+  font-size: 12px;
+}
+.journey-rec-none {
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+
+/* 服务状态块 */
+.journey-serve {
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.journey-serve b {
+  font-size: 15px;
+}
+.journey-serve-note {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+}
+.journey-serve-blocked {
+  background: var(--journey-danger-bg);
+  border: 1px solid var(--journey-danger-border);
+  color: var(--journey-danger-strong);
+}
+.journey-serve-ok {
+  background: var(--journey-ok-bg);
+  border: 1px solid var(--journey-ok-border);
+  color: var(--journey-ok);
+}
+.journey-serve-unknown {
+  background: var(--journey-soft);
+  border: 1px solid var(--journey-border);
+  color: var(--text-secondary, #526079);
+}
+
+/* 受阻 / 无结果时的真实下一步入口（已有功能，不是“一键解决”） */
+.journey-next {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.journey-next-btn {
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.journey-next-btn:hover {
+  text-decoration: underline;
+}
+
+/* 组级指标 */
+.journey-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.journey-metric {
+  background: var(--surface, #fff);
+  border: 1px solid var(--journey-border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.journey-metric-label {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+}
+.journey-metric-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary, #182238);
+}
+.journey-metric-bad {
+  color: var(--journey-danger);
+}
+
+/* 空态 */
+.journey-empty {
+  margin: 0 0 12px;
+}
+.journey-empty-lead {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--text-primary, #182238);
+}
+.journey-empty-note {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* 主按钮 */
+.journey-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.journey-btn-primary {
+  min-height: 44px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent, #315ce7);
+  color: #fff;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.journey-btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+.journey-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.journey-action-note {
+  font-size: 12px;
+}
+
+/* 过期（情况已变化）块：不与当前场景拼接渲染旧结果 */
+.journey-outdated {
+  background: var(--journey-warn-bg);
+  border: 1px solid var(--journey-warn-border);
+  color: var(--journey-warn);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.journey-outdated b {
+  font-size: 15px;
+}
+.journey-outdated-note {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+}
+
+/* 摘要卡内的路线速览（主操作：与 selectedRouteId 联动，先回答“从哪走”） */
+.journey-route-quick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  border: 1px solid var(--journey-border);
+  border-radius: 12px;
+  background: #f0f4fe;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.journey-route-quick-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 1;
+}
+.journey-route-quick-seq {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary, #182238);
+}
+.journey-route-quick-note {
+  font-size: 12px;
+}
+.journey-route-quick-btn {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 9px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent, #315ce7);
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.journey-route-quick-btn:hover {
+  filter: brightness(1.06);
+}
+
+/* 有效结果时“重新计算”降为次级按钮（仍保持 44px 触达） */
+.journey-btn-secondary {
+  min-height: 44px;
+  padding: 9px 20px;
+  border: 1px solid var(--journey-chip-border);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #182238);
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.journey-btn-secondary:hover:not(:disabled) {
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+}
+.journey-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 赶末班组逾期：黄色主提示（与“路线可达”绿色状态分开表达） */
+.journey-serve-deadline {
+  background: var(--journey-warn-bg);
+  border: 1px solid var(--journey-warn-border);
+  color: var(--journey-warn);
+}
+
+/* 移动端：点选路线后地图上方提供“返回建议”入口（桌面隐藏，地图本就同屏） */
+.journey-back-to-advice { display: none; }
+
+@media (max-width: 900px) {
+  .journey-route-quick {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .journey-route-quick-btn {
+    width: 100%;
+  }
+  .journey-back-to-advice {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 0 0 8px;
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 1px solid var(--journey-chip-border);
+    border-radius: 999px;
+    background: var(--surface, #fff);
+    color: var(--accent, #315ce7);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+}
+
+/* ---- 详情卡：路线列表 ---- */
+.journey-route-note {
+  margin: 4px 0 12px;
+  font-size: 13px;
+}
+.journey-route-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.journey-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--journey-border);
+  border-radius: 12px;
+  background: #fafbfe;
+}
+.journey-route-selected {
+  border-color: var(--accent, #315ce7);
+  box-shadow: 0 0 0 1px var(--accent, #315ce7) inset;
+  background: #f0f4fe;
+}
+.journey-route-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.journey-route-seq {
+  font-size: 15px;
+  color: var(--text-primary, #182238);
+}
+.journey-route-meta {
+  font-size: 12px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.journey-route-btn {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 6px 14px;
+  border: 1px solid var(--journey-chip-border);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: var(--accent, #315ce7);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.journey-route-btn:hover {
+  border-color: var(--accent, #315ce7);
+}
+
+.journey-metric-note {
+  margin: 12px 0 0;
+  font-size: 12px;
+}
+
+/* 推荐理由 */
+.journey-why {
+  margin-top: 12px;
+  font-size: 14px;
+}
+.journey-why summary {
+  cursor: pointer;
+  color: var(--accent, #315ce7);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+.journey-why p {
+  margin: 8px 0 0;
+  color: var(--text-primary, #182238);
+}
+.journey-why ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--text-secondary, #526079);
+}
+
+/* 次级链接 */
+.journey-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e6eaf2;
+  font-size: 13px;
+}
+.journey-link {
+  min-height: 40px;
+  padding: 4px 12px;
+  border: none;
+  background: transparent;
+  color: var(--accent, #315ce7);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.journey-link:hover {
+  text-decoration: underline;
+}

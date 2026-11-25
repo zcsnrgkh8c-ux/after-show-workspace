@@ -1,0 +1,180 @@
+/*
+ * 窗口2（地图体验）局部样式：CSS Modules 作用域 + journey-map- 语义类名。
+ * 只用窗口4提供的全局变量（带 fallback），不写任何全局选择器覆盖。
+ */
+
+.card {
+  background: var(--surface, #ffffff);
+  border: 1px solid rgba(24, 34, 56, 0.1);
+  border-radius: var(--radius-card, 16px);
+  padding: 12px 16px 14px;
+  color: var(--text-primary, #182238);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.switch {
+  display: inline-flex;
+  border: 1px solid rgba(24, 34, 56, 0.16);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.switchBtn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  min-height: 40px;
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+  cursor: pointer;
+}
+
+.switchBtn:hover {
+  color: var(--accent, #315ce7);
+}
+
+.switchActive {
+  background: var(--accent, #315ce7);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.switchActive:hover {
+  color: #ffffff;
+}
+
+/* 状态提示：准确区分 过期 / 无结果 / 回放 / 阻断 / 警示 */
+.noteDim {
+  font-size: 13px;
+  color: var(--text-secondary, #526079);
+  background: rgba(82, 96, 121, 0.07);
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.noteWarn {
+  font-size: 13px;
+  color: #7c4a03;
+  background: #fef3c7;
+  border: 1px solid #b45309;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.noteWarnSmall {
+  font-size: 12px;
+  color: #7c4a03;
+  background: #fef3c7;
+  border-radius: 8px;
+  padding: 4px 10px;
+  margin-bottom: 8px;
+}
+
+.body {
+  margin-top: 4px;
+}
+
+.noteLine {
+  font-size: 12px;
+  color: var(--text-secondary, #526079);
+  margin-top: 8px;
+}
+
+/* 点选详情（技术信息收纳处） */
+.detailBar {
+  display: flex;
+  align-items: center;
+  gap: 6px 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(49, 92, 231, 0.06);
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.mono {
+  font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+}
+
+.dim {
+  color: var(--text-secondary, #526079);
+}
+
+.closeBtn {
+  border: 1px solid rgba(24, 34, 56, 0.2);
+  background: var(--surface, #ffffff);
+  color: var(--text-primary, #182238);
+  border-radius: 8px;
+  padding: 6px 14px;
+  min-height: 36px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  border-color: var(--accent, #315ce7);
+  color: var(--accent, #315ce7);
+}
+
+/* “查看散场过程”折叠入口 */
+.process {
+  margin-top: 12px;
+  border-top: 1px solid rgba(24, 34, 56, 0.08);
+  padding-top: 8px;
+}
+
+.processToggle {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  padding: 6px 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #182238);
+  cursor: pointer;
+  text-align: left;
+}
+
+.processToggle:hover {
+  color: var(--accent, #315ce7);
+}
+
+.processSub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary, #526079);
+}
+
+.processBody {
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .card {
+    padding: 10px 12px 12px;
+  }
+}

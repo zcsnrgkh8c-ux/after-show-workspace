@@ -1,0 +1,5295 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.0.0",
+  "scenario_id": "no_boarding",
+  "scenario_revision": 1,
+  "plan_id": "baseline_no_boarding_rev1",
+  "seed": 20261114,
+  "status": "valid",
+  "violations": [
+    {
+      "code": "PLAN_UNMET_GROUP",
+      "path": "allocations[0].routes",
+      "message": "组 \"regular\"（60 人）未分配路线，将留在 S 等待，属未满足服务",
+      "severity": "warning"
+    },
+    {
+      "code": "PLAN_UNMET_GROUP",
+      "path": "allocations[1].routes",
+      "message": "组 \"step_free\"（20 人）未分配路线，将留在 S 等待，属未满足服务",
+      "severity": "warning"
+    },
+    {
+      "code": "PLAN_UNMET_GROUP",
+      "path": "allocations[2].routes",
+      "message": "组 \"deadline\"（30 人）未分配路线，将留在 S 等待，属未满足服务",
+      "severity": "warning"
+    },
+    {
+      "code": "PLAN_STOP_NO_DEMAND",
+      "path": "departures",
+      "message": "站点 \"P1\" 没有任何被分配路线到达，相关班次将持续空车",
+      "severity": "warning"
+    }
+  ],
+  "metrics": {
+    "released_count": 110,
+    "boarded_count": 0,
+    "remaining_count": 110,
+    "mean_queue_wait_all_released_s": 452,
+    "p95_queue_wait_boarded_s": null,
+    "missed_deadline_count": 30,
+    "clearance_time_s": null
+  },
+  "group_metrics": [
+    {
+      "group_id": "regular",
+      "released_count": 60,
+      "boarded_count": 0,
+      "remaining_count": 60,
+      "mean_queue_wait_all_released_s": 461.5,
+      "p95_queue_wait_boarded_s": null,
+      "missed_deadline_count": 0,
+      "clearance_time_s": null
+    },
+    {
+      "group_id": "step_free",
+      "released_count": 20,
+      "boarded_count": 0,
+      "remaining_count": 20,
+      "mean_queue_wait_all_released_s": 440.5,
+      "p95_queue_wait_boarded_s": null,
+      "missed_deadline_count": 0,
+      "clearance_time_s": null
+    },
+    {
+      "group_id": "deadline",
+      "released_count": 30,
+      "boarded_count": 0,
+      "remaining_count": 30,
+      "mean_queue_wait_all_released_s": 440.6666666666667,
+      "p95_queue_wait_boarded_s": null,
+      "missed_deadline_count": 30,
+      "clearance_time_s": null
+    }
+  ],
+  "timeline": [
+    {
+      "t_s": 0,
+      "released_count": 2,
+      "boarded_count": 0,
+      "queued_count": 2,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 2,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 5,
+      "released_count": 3,
+      "boarded_count": 0,
+      "queued_count": 3,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 3,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 1,
+          "boarded_count": 0,
+          "queued_count": 1,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 10,
+      "released_count": 3,
+      "boarded_count": 0,
+      "queued_count": 3,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 3,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 1,
+          "boarded_count": 0,
+          "queued_count": 1,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 15,
+      "released_count": 4,
+      "boarded_count": 0,
+      "queued_count": 4,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 4,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 3,
+          "boarded_count": 0,
+          "queued_count": 3,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 1,
+          "boarded_count": 0,
+          "queued_count": 1,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 20,
+      "released_count": 6,
+      "boarded_count": 0,
+      "queued_count": 6,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 6,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 25,
+      "released_count": 8,
+      "boarded_count": 0,
+      "queued_count": 8,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 8,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 30,
+      "released_count": 11,
+      "boarded_count": 0,
+      "queued_count": 11,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 11,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 8,
+          "boarded_count": 0,
+          "queued_count": 8,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 3,
+          "boarded_count": 0,
+          "queued_count": 3,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 35,
+      "released_count": 13,
+      "boarded_count": 0,
+      "queued_count": 13,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 13,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 9,
+          "boarded_count": 0,
+          "queued_count": 9,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 40,
+      "released_count": 14,
+      "boarded_count": 0,
+      "queued_count": 14,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 14,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 10,
+          "boarded_count": 0,
+          "queued_count": 10,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 45,
+      "released_count": 16,
+      "boarded_count": 0,
+      "queued_count": 16,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 16,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 0,
+          "boarded_count": 0,
+          "queued_count": 0,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 50,
+      "released_count": 18,
+      "boarded_count": 0,
+      "queued_count": 18,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 18,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 1,
+          "boarded_count": 0,
+          "queued_count": 1,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 5,
+          "boarded_count": 0,
+          "queued_count": 5,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 55,
+      "released_count": 21,
+      "boarded_count": 0,
+      "queued_count": 21,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 21,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 14,
+          "boarded_count": 0,
+          "queued_count": 14,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 5,
+          "boarded_count": 0,
+          "queued_count": 5,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 60,
+      "released_count": 22,
+      "boarded_count": 0,
+      "queued_count": 22,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 22,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 15,
+          "boarded_count": 0,
+          "queued_count": 15,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 2,
+          "boarded_count": 0,
+          "queued_count": 2,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 5,
+          "boarded_count": 0,
+          "queued_count": 5,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 65,
+      "released_count": 27,
+      "boarded_count": 0,
+      "queued_count": 27,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 27,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 3,
+          "boarded_count": 0,
+          "queued_count": 3,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 70,
+      "released_count": 28,
+      "boarded_count": 0,
+      "queued_count": 28,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 28,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 75,
+      "released_count": 29,
+      "boarded_count": 0,
+      "queued_count": 29,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 29,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 19,
+          "boarded_count": 0,
+          "queued_count": 19,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 80,
+      "released_count": 30,
+      "boarded_count": 0,
+      "queued_count": 30,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 30,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 85,
+      "released_count": 30,
+      "boarded_count": 0,
+      "queued_count": 30,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 30,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 90,
+      "released_count": 32,
+      "boarded_count": 0,
+      "queued_count": 32,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 32,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 8,
+          "boarded_count": 0,
+          "queued_count": 8,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 95,
+      "released_count": 32,
+      "boarded_count": 0,
+      "queued_count": 32,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 32,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 8,
+          "boarded_count": 0,
+          "queued_count": 8,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 100,
+      "released_count": 36,
+      "boarded_count": 0,
+      "queued_count": 36,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 36,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 22,
+          "boarded_count": 0,
+          "queued_count": 22,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 10,
+          "boarded_count": 0,
+          "queued_count": 10,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 105,
+      "released_count": 39,
+      "boarded_count": 0,
+      "queued_count": 39,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 39,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 24,
+          "boarded_count": 0,
+          "queued_count": 24,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 11,
+          "boarded_count": 0,
+          "queued_count": 11,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 110,
+      "released_count": 42,
+      "boarded_count": 0,
+      "queued_count": 42,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 42,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 26,
+          "boarded_count": 0,
+          "queued_count": 26,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 115,
+      "released_count": 44,
+      "boarded_count": 0,
+      "queued_count": 44,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 44,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 28,
+          "boarded_count": 0,
+          "queued_count": 28,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 4,
+          "boarded_count": 0,
+          "queued_count": 4,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 120,
+      "released_count": 45,
+      "boarded_count": 0,
+      "queued_count": 45,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 45,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 28,
+          "boarded_count": 0,
+          "queued_count": 28,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 5,
+          "boarded_count": 0,
+          "queued_count": 5,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 125,
+      "released_count": 46,
+      "boarded_count": 0,
+      "queued_count": 46,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 46,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 28,
+          "boarded_count": 0,
+          "queued_count": 28,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 130,
+      "released_count": 46,
+      "boarded_count": 0,
+      "queued_count": 46,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 46,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 28,
+          "boarded_count": 0,
+          "queued_count": 28,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 135,
+      "released_count": 50,
+      "boarded_count": 0,
+      "queued_count": 50,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 50,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 32,
+          "boarded_count": 0,
+          "queued_count": 32,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 140,
+      "released_count": 52,
+      "boarded_count": 0,
+      "queued_count": 52,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 52,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 32,
+          "boarded_count": 0,
+          "queued_count": 32,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 6,
+          "boarded_count": 0,
+          "queued_count": 6,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 14,
+          "boarded_count": 0,
+          "queued_count": 14,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 145,
+      "released_count": 55,
+      "boarded_count": 0,
+      "queued_count": 55,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 55,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 33,
+          "boarded_count": 0,
+          "queued_count": 33,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 8,
+          "boarded_count": 0,
+          "queued_count": 8,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 14,
+          "boarded_count": 0,
+          "queued_count": 14,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 150,
+      "released_count": 57,
+      "boarded_count": 0,
+      "queued_count": 57,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 57,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 35,
+          "boarded_count": 0,
+          "queued_count": 35,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 8,
+          "boarded_count": 0,
+          "queued_count": 8,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 14,
+          "boarded_count": 0,
+          "queued_count": 14,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 155,
+      "released_count": 61,
+      "boarded_count": 0,
+      "queued_count": 61,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 61,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 36,
+          "boarded_count": 0,
+          "queued_count": 36,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 10,
+          "boarded_count": 0,
+          "queued_count": 10,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 15,
+          "boarded_count": 0,
+          "queued_count": 15,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 160,
+      "released_count": 63,
+      "boarded_count": 0,
+      "queued_count": 63,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 63,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 37,
+          "boarded_count": 0,
+          "queued_count": 37,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 10,
+          "boarded_count": 0,
+          "queued_count": 10,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 165,
+      "released_count": 63,
+      "boarded_count": 0,
+      "queued_count": 63,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 63,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 37,
+          "boarded_count": 0,
+          "queued_count": 37,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 10,
+          "boarded_count": 0,
+          "queued_count": 10,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 170,
+      "released_count": 66,
+      "boarded_count": 0,
+      "queued_count": 66,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 66,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 38,
+          "boarded_count": 0,
+          "queued_count": 38,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 175,
+      "released_count": 66,
+      "boarded_count": 0,
+      "queued_count": 66,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 66,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 38,
+          "boarded_count": 0,
+          "queued_count": 38,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 180,
+      "released_count": 66,
+      "boarded_count": 0,
+      "queued_count": 66,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 66,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 38,
+          "boarded_count": 0,
+          "queued_count": 38,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 12,
+          "boarded_count": 0,
+          "queued_count": 12,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 185,
+      "released_count": 71,
+      "boarded_count": 0,
+      "queued_count": 71,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 71,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 40,
+          "boarded_count": 0,
+          "queued_count": 40,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 14,
+          "boarded_count": 0,
+          "queued_count": 14,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 17,
+          "boarded_count": 0,
+          "queued_count": 17,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 190,
+      "released_count": 72,
+      "boarded_count": 0,
+      "queued_count": 72,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 72,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 40,
+          "boarded_count": 0,
+          "queued_count": 40,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 14,
+          "boarded_count": 0,
+          "queued_count": 14,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 195,
+      "released_count": 74,
+      "boarded_count": 0,
+      "queued_count": 74,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 74,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 41,
+          "boarded_count": 0,
+          "queued_count": 41,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 15,
+          "boarded_count": 0,
+          "queued_count": 15,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 200,
+      "released_count": 76,
+      "boarded_count": 0,
+      "queued_count": 76,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 76,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 43,
+          "boarded_count": 0,
+          "queued_count": 43,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 15,
+          "boarded_count": 0,
+          "queued_count": 15,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 205,
+      "released_count": 79,
+      "boarded_count": 0,
+      "queued_count": 79,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 79,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 45,
+          "boarded_count": 0,
+          "queued_count": 45,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 15,
+          "boarded_count": 0,
+          "queued_count": 15,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 19,
+          "boarded_count": 0,
+          "queued_count": 19,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 210,
+      "released_count": 80,
+      "boarded_count": 0,
+      "queued_count": 80,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 80,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 45,
+          "boarded_count": 0,
+          "queued_count": 45,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 19,
+          "boarded_count": 0,
+          "queued_count": 19,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 215,
+      "released_count": 84,
+      "boarded_count": 0,
+      "queued_count": 84,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 84,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 49,
+          "boarded_count": 0,
+          "queued_count": 49,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 19,
+          "boarded_count": 0,
+          "queued_count": 19,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 220,
+      "released_count": 85,
+      "boarded_count": 0,
+      "queued_count": 85,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 85,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 49,
+          "boarded_count": 0,
+          "queued_count": 49,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 225,
+      "released_count": 86,
+      "boarded_count": 0,
+      "queued_count": 86,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 86,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 50,
+          "boarded_count": 0,
+          "queued_count": 50,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 16,
+          "boarded_count": 0,
+          "queued_count": 16,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 230,
+      "released_count": 91,
+      "boarded_count": 0,
+      "queued_count": 91,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 91,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 52,
+          "boarded_count": 0,
+          "queued_count": 52,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 17,
+          "boarded_count": 0,
+          "queued_count": 17,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 22,
+          "boarded_count": 0,
+          "queued_count": 22,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 235,
+      "released_count": 93,
+      "boarded_count": 0,
+      "queued_count": 93,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 93,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 52,
+          "boarded_count": 0,
+          "queued_count": 52,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 23,
+          "boarded_count": 0,
+          "queued_count": 23,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 240,
+      "released_count": 93,
+      "boarded_count": 0,
+      "queued_count": 93,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 93,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 52,
+          "boarded_count": 0,
+          "queued_count": 52,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 23,
+          "boarded_count": 0,
+          "queued_count": 23,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 245,
+      "released_count": 95,
+      "boarded_count": 0,
+      "queued_count": 95,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 95,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 52,
+          "boarded_count": 0,
+          "queued_count": 52,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 25,
+          "boarded_count": 0,
+          "queued_count": 25,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 250,
+      "released_count": 95,
+      "boarded_count": 0,
+      "queued_count": 95,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 95,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 52,
+          "boarded_count": 0,
+          "queued_count": 52,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 25,
+          "boarded_count": 0,
+          "queued_count": 25,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 255,
+      "released_count": 96,
+      "boarded_count": 0,
+      "queued_count": 96,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 96,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 53,
+          "boarded_count": 0,
+          "queued_count": 53,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 18,
+          "boarded_count": 0,
+          "queued_count": 18,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 25,
+          "boarded_count": 0,
+          "queued_count": 25,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 260,
+      "released_count": 97,
+      "boarded_count": 0,
+      "queued_count": 97,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 97,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 53,
+          "boarded_count": 0,
+          "queued_count": 53,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 19,
+          "boarded_count": 0,
+          "queued_count": 19,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 25,
+          "boarded_count": 0,
+          "queued_count": 25,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 265,
+      "released_count": 99,
+      "boarded_count": 0,
+      "queued_count": 99,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 99,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 54,
+          "boarded_count": 0,
+          "queued_count": 54,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 25,
+          "boarded_count": 0,
+          "queued_count": 25,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 270,
+      "released_count": 100,
+      "boarded_count": 0,
+      "queued_count": 100,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 100,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 54,
+          "boarded_count": 0,
+          "queued_count": 54,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 26,
+          "boarded_count": 0,
+          "queued_count": 26,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 275,
+      "released_count": 102,
+      "boarded_count": 0,
+      "queued_count": 102,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 102,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 56,
+          "boarded_count": 0,
+          "queued_count": 56,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 26,
+          "boarded_count": 0,
+          "queued_count": 26,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 280,
+      "released_count": 106,
+      "boarded_count": 0,
+      "queued_count": 106,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 106,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 57,
+          "boarded_count": 0,
+          "queued_count": 57,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 29,
+          "boarded_count": 0,
+          "queued_count": 29,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 285,
+      "released_count": 106,
+      "boarded_count": 0,
+      "queued_count": 106,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 106,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 57,
+          "boarded_count": 0,
+          "queued_count": 57,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 29,
+          "boarded_count": 0,
+          "queued_count": 29,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 290,
+      "released_count": 108,
+      "boarded_count": 0,
+      "queued_count": 108,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 108,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 58,
+          "boarded_count": 0,
+          "queued_count": 58,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 295,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 300,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 305,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 310,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 315,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 320,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 325,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 330,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 335,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 340,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 345,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 350,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 355,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 360,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 365,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 370,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 375,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 380,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 385,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 390,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 395,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 400,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 405,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 410,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 415,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 420,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 425,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 430,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 435,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 440,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 445,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 450,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 455,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 460,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 465,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 470,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 475,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 480,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 485,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 490,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 495,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 500,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 505,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 510,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 515,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 520,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 525,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 530,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 535,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 540,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 545,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 550,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 555,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 560,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 565,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 570,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 575,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 580,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 585,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 590,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 595,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    },
+    {
+      "t_s": 600,
+      "released_count": 110,
+      "boarded_count": 0,
+      "queued_count": 110,
+      "walking_count": 0,
+      "node_queues": {
+        "S": 110,
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "edge_counts": {
+        "a1": 0,
+        "a2": 0,
+        "b1": 0,
+        "b2": 0,
+        "c1": 0,
+        "c2": 0
+      },
+      "group_counts": {
+        "regular": {
+          "released_count": 60,
+          "boarded_count": 0,
+          "queued_count": 60,
+          "walking_count": 0
+        },
+        "step_free": {
+          "released_count": 20,
+          "boarded_count": 0,
+          "queued_count": 20,
+          "walking_count": 0
+        },
+        "deadline": {
+          "released_count": 30,
+          "boarded_count": 0,
+          "queued_count": 30,
+          "walking_count": 0
+        }
+      }
+    }
+  ],
+  "departures_log": [
+    {
+      "vehicle_id": "B1",
+      "stop_id": "P1",
+      "depart_s": 180,
+      "boarded_count": 0
+    },
+    {
+      "vehicle_id": "B1",
+      "stop_id": "P1",
+      "depart_s": 540,
+      "boarded_count": 0
+    }
+  ]
+}
